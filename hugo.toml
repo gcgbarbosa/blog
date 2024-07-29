@@ -7,7 +7,7 @@ author = "George C. G. Barbosa"
 copyright = "Copyright © 2024, gcgbarbosa."
 languageCode = "en-US"
 
-publishDir = "docs"
+publishDir = "public"
 
 [params]
   description = "gcgbarbosa's"

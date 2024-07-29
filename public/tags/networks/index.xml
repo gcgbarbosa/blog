@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Networks on gcgbarbosa's</title><link>https://example.org/tags/networks/</link><description>Recent content in Networks on gcgbarbosa's</description><generator>Hugo</generator><language>en-US</language><copyright>Copyright © 2024, gcgbarbosa.</copyright><lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/tags/networks/index.xml" rel="self" type="application/rss+xml"/><item><title>How to enable syntax highlighting and auto-completion for NS-3 in Doom Emacs?</title><link>https://example.org/blog/doom-syntax/</link><pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate><guid>https://example.org/blog/doom-syntax/</guid><description>If doom is your favorite editor and you want to work on ns-3 with doom then follow these steps:
+Have doom emacs and ns-3 installed.
+Make sure your init.el file has cc with lsp enabled:
+(cc +lsp) You will need to generate a file called compile_commands.json.
+Depending on your version of ns-3 you might use waf or cmake for that.
+on cmake, add the following to your cmake compilation command:</description></item></channel></rss>
