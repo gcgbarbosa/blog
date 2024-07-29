@@ -1,0 +1,16 @@
+baseURL = 'https://example.org/'
+
+theme = 'hugo-bearblog'
+
+title = "gcgbarbosa's"
+author = "George C. G. Barbosa"
+copyright = "Copyright © 2024, gcgbarbosa."
+languageCode = "en-US"
+
+publishDir = "docs"
+
+[params]
+  description = "gcgbarbosa's"
+  title = "gcgbarbosa's"
+  hideMadeWithLine = true
+  

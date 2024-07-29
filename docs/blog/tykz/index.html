@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tykz for scientific drawing | gcgbarbosa&#39;s</title>
+<meta name="title" content="Tykz for scientific drawing" />
+<meta name="description" content="How to write tykz" />
+<meta name="keywords" content="util," />
+
+
+<meta property="og:url" content="http://localhost:1313/blog/tykz/">
+  <meta property="og:site_name" content="gcgbarbosa&#39;s">
+  <meta property="og:title" content="Tykz for scientific drawing">
+  <meta property="og:description" content="How to write tykz">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2023-03-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-03-28T00:00:00+00:00">
+    <meta property="article:tag" content="Util">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tykz for scientific drawing">
+  <meta name="twitter:description" content="How to write tykz">
+
+
+
+
+  <meta itemprop="name" content="Tykz for scientific drawing">
+  <meta itemprop="description" content="How to write tykz">
+  <meta itemprop="datePublished" content="2023-03-28T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-03-28T00:00:00+00:00">
+  <meta itemprop="wordCount" content="346">
+  <meta itemprop="keywords" content="Util">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+     
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+
+</style>
+
+
+<head>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>gcgbarbosa&#39;s</h2>
+</a>
+<nav><a href="/">Home</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>Tykz for scientific drawing</h1>
+<p>
+  <i>
+    <time datetime='2023-03-28' pubdate>
+      28 Mar, 2023
+    </time>
+  </i>
+</p>
+
+<content>
+  <p>The two images below have the same information. How do you go from this:</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1675048854707/26a0ee9b-356c-4983-9cf0-d850598bfd4c.png" alt="before"></p>
+<p>To this?</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1675048838279/12ca21c4-5849-41d1-8a89-6e38ce2f69e4.png" alt="after"></p>
+<p>Using tikz :)</p>
+<hr>
+<h3 id="what-is-tikz">What is TikZ?</h3>
+<p>TykZ is a LaTeX package used for creating professional-looking graphics in scientific documents. LaTeX is a typesetting language used for producing high-quality technical and scientific documents, and TykZ provides additional tools and features for producing graphics in these types of documents.</p>
+<p>The TykZ package offers a variety of tools for creating graphics, including the ability to create 3D graphics, plot data, and produce animations. It also provides several pre-made templates for common types of graphics, making it easier to produce professional-looking results quickly.</p>
+<p>The TykZ package is particularly well-suited for use in scientific documents, as it provides features for creating graphics that are specifically designed to meet the needs of this type of content. For example, it includes tools for creating 3D graphics that can be used to visualize scientific data, and it provides options for labeling axes and including legends.</p>
+<p>Overall, the TikZ package is a valuable tool for scientists and technical writers who need to produce high-quality graphics in their documents. It offers a range of features that make it easier to create professional-looking results, even for those with limited experience in creating graphics.</p>
+<h3 id="how-to-use-tikz">How to use TikZ?</h3>
+<p>TikZ is a package inside Latex. To use TikZ, you will need a machine with Latex installed and working.</p>
+<p>One solution to get Latex working faster is Overleaf. Overleaf is a collaborative, cloud-based LaTeX editor and project management tool for creating, editing, and publishing scientific and academic documents.</p>
+<p>If you want to learn TykZ, overleaf has a great 5 part tutorial: <a href="https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_1)%E2%80%94Basic_Drawing">learn tykz</a>.</p>
+<p>You can use the following latex template to get started with TykZ.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-latex" data-lang="latex"><span style="display:flex;"><span><span style="color:#66d9ef">\documentclass</span><span style="color:#a6e22e">[12pt]</span>{article}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\usepackage</span>{graphicx}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\usepackage</span><span style="color:#a6e22e">[margin=1in]</span>{geometry}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\title</span>{
+</span></span><span style="display:flex;"><span>  My beautiful square
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\author</span>{George C. G. Barbosa}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\date</span>{<span style="color:#66d9ef">\today</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\usepackage</span>{tikz}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\usetikzlibrary</span>{
+</span></span><span style="display:flex;"><span>  shapes,
+</span></span><span style="display:flex;"><span>  arrows,
+</span></span><span style="display:flex;"><span>  arrows.meta,
+</span></span><span style="display:flex;"><span>  shapes.geometric,
+</span></span><span style="display:flex;"><span>  calc,
+</span></span><span style="display:flex;"><span>  positioning,
+</span></span><span style="display:flex;"><span>  backgrounds,
+</span></span><span style="display:flex;"><span>  decorations.pathreplacing,
+</span></span><span style="display:flex;"><span>  matrix,
+</span></span><span style="display:flex;"><span>  math
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{document}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\maketitle</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\begin</span>{figure}[h]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">\centering</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">\resizebox</span>{<span style="color:#66d9ef">\columnwidth</span>}{!}{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\begin</span>{tikzpicture}[]
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">\draw</span> (0,0) -- (4,0) -- (4,4) -- (0,4) -- (0,0);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">\end</span>{tikzpicture}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\caption</span>{<span style="color:#66d9ef">\footnotesize</span>{El squaro}}<span style="color:#66d9ef">\label</span>{fig:tikz}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\end</span>{figure}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">\end</span>{document}
+</span></span></code></pre></div><p>The above source code will draw a square of 4x4 units.</p>
+
+</content>
+<p>
+  
+  <a href="http://localhost:1313/tags/util/">#Util</a>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+    
+</body>
+
+</html>

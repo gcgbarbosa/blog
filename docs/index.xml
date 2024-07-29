@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hello World! on gcgbarbosa&#39;s</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Hello World! on gcgbarbosa&#39;s</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2024, gcgbarbosa.</copyright>
+    <lastBuildDate>Sat, 27 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The bare minimum to get started with Typst</title>
+      <link>http://localhost:1313/blog/typst/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/typst/</guid>
+      <description>Typst is a new markup-based typesetting system for the sciences It was designed to be the middle ground between Latex and Microsoft Word.&#xA;Installation The best way to install is using cargo:&#xA;cargo install --locked typst-cli You can learn how to install cargo here.&#xA;Writing your first document This code:&#xA;# hello_world.typ = Hello World This is a hello world. After running:&#xA;typst compile hello_world.typ Should render hello_world.pdf:&#xA;Where do I go from here?</description>
+    </item>
+    <item>
+      <title>The super smart talking robots that can&#39;t explain themselves</title>
+      <link>http://localhost:1313/blog/gpts/</link>
+      <pubDate>Fri, 28 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/gpts/</guid>
+      <description>For years, there has been a push in the AI community for more interpretable models. The idea behind explainable AI was to develop systems that could explain their reasoning process. In theory, this should increase trust and transparency around AI.&#xA;However, I would argue that recent developments have killed off research into explainable AI as a path forward, at least for now. The core issue is the rise of large language models that operate as black boxes.</description>
+    </item>
+    <item>
+      <title>The case for custom ergonomic keyboards</title>
+      <link>http://localhost:1313/blog/keyboard/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/keyboard/</guid>
+      <description>If we do our jobs right (programmers), we spend 40 hours a week typing on this thing called keyboard. Some people love keyboards—a lot. I am one of them. I started with mechanical keyboards, and I must warn you that this is addictive.&#xA;Mechanical Keyboards A mechanical keyboard uses individual mechanical switches for each key instead of the rubber dome or membrane commonly used in most modern keyboards. Sometimes the mechanical switches provide tactile feedback and a distinct &amp;ldquo;click&amp;rdquo; sound when pressed.</description>
+    </item>
+    <item>
+      <title>Tykz for scientific drawing</title>
+      <link>http://localhost:1313/blog/tykz/</link>
+      <pubDate>Tue, 28 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/tykz/</guid>
+      <description>The two images below have the same information. How do you go from this:&#xA;To this?&#xA;Using tikz :)&#xA;What is TikZ? TykZ is a LaTeX package used for creating professional-looking graphics in scientific documents. LaTeX is a typesetting language used for producing high-quality technical and scientific documents, and TykZ provides additional tools and features for producing graphics in these types of documents.&#xA;The TykZ package offers a variety of tools for creating graphics, including the ability to create 3D graphics, plot data, and produce animations.</description>
+    </item>
+    <item>
+      <title>Taking notes &amp; good science</title>
+      <link>http://localhost:1313/blog/taking-notes/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/taking-notes/</guid>
+      <description>You can&amp;rsquo;t have good science without taking notes unless you remember what you had for lunch 58 days ago. Science is about forming consensus and being able to replicate experiments. How can you repeat what you don&amp;rsquo;t remember? Have I convinced you? No? Then leave. Don&amp;rsquo;t read the rest. Have you convinced yourself now? I hope so&amp;hellip; grrrrrrrrr&#xA;Googling brings up some good things about note-taking in general:&#xA;Cornell Method: Divide your notepaper into a main notetaking area, a cue column, and a summary section.</description>
+    </item>
+    <item>
+      <title>Reveal.js super quick</title>
+      <link>http://localhost:1313/blog/reveal-js/</link>
+      <pubDate>Fri, 10 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/reveal-js/</guid>
+      <description>Using visual tools for quick presentations is overkill, in my opinion. If you give different presentations weekly, please try a text-based tool; I promise you won&amp;rsquo;t regret it. There are many options. In this short post, I will discuss Reveal.js because it is part of my toolchain.&#xA;Reveal.js is an open-source JavaScript library for creating presentations using HTML, CSS, and JavaScript. It is designed to allow customizable and interactive presentations to be viewed in a web browser without additional software.</description>
+    </item>
+    <item>
+      <title>How to enable syntax highlighting and auto-completion for NS-3 in Doom Emacs?</title>
+      <link>http://localhost:1313/blog/doom-syntax/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/doom-syntax/</guid>
+      <description>If doom is your favorite editor and you want to work on ns-3 with doom then follow these steps:&#xA;Have doom emacs and ns-3 installed.&#xA;Make sure your init.el file has cc with lsp enabled:&#xA;(cc +lsp) You will need to generate a file called compile_commands.json.&#xA;Depending on your version of ns-3 you might use waf or cmake for that.&#xA;on cmake, add the following to your cmake compilation command:</description>
+    </item>
+  </channel>
+</rss>
