@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Writing on gcgbarbosa's</title><link>https://example.org/tags/writing/</link><description>Recent content in Writing on gcgbarbosa's</description><generator>Hugo</generator><language>en-US</language><copyright>Copyright © 2024, gcgbarbosa.</copyright><lastBuildDate>Sat, 27 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/tags/writing/index.xml" rel="self" type="application/rss+xml"/><item><title>The bare minimum to get started with Typst</title><link>https://example.org/blog/typst/</link><pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate><guid>https://example.org/blog/typst/</guid><description>Typst is a new markup-based typesetting system for the sciences It was designed to be the middle ground between Latex and Microsoft Word.
-Installation The best way to install is using cargo:
-cargo install --locked typst-cli You can learn how to install cargo here.
-Writing your first document This code:
-# hello_world.typ = Hello World This is a hello world. After running:
-typst compile hello_world.typ Should render hello_world.pdf:
-Where do I go from here?</description></item></channel></rss>
