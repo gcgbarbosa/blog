@@ -62,6 +62,27 @@ map("n", "<leader>gg", "<cmd> Neogit <cr>")
 
 - `SPC f f`: Fuzzy find all files in the current directory 
 
+## Treesitter
+
+The goal of `nvim-treesitter` is to offer a straightforward and user-friendly interface for integrating `tree-sitter` into Neovim, along with basic functionalities such as syntax highlighting.
+
+### How to enable
+
+Edit `.conf/nvim/lua/plugins/init.vim` and enable:
+
+```
+[...]
+  {
+  	"nvim-treesitter/nvim-treesitter",
+  	opts = {
+        ensure_installed = {
+            "vim", "lua", "vimdoc", "html", "css", "python"
+        },
+  	},
+  },
+[...]
+```
+
 ## Mason
 
 Mason is a Neovim plugin that provides an integrated way
