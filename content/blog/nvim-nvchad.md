@@ -70,17 +70,17 @@ The goal of `nvim-treesitter` is to offer a straightforward and user-friendly in
 
 Edit `.conf/nvim/lua/plugins/init.vim` and enable:
 
-```
-[...]
-  {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-        ensure_installed = {
-            "vim", "lua", "vimdoc", "html", "css", "python"
+```lua
+-- [...]
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+            ensure_installed = {
+               "vim", "lua", "vimdoc", "html", "css", "python"
+            },
         },
-  	},
-  },
-[...]
+    },
+--[...]
 ```
 
 ## Mason
