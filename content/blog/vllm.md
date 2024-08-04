@@ -31,10 +31,12 @@ Run:
 
 ```bash
 docker run -it \
+     -v ~/.cache/huggingface:/root/.cache/huggingface \
      --rm \
      --network=host \
      vllm-cpu-env \
-     --model Groq/Llama-3-Groq-8B-Tool-Use
+     --model facebook/opt-125m \
+     --api-key 1234banana
 ```
 
 This will install Llama-3-Groq-8B-Tool-Use model and start the server.
@@ -47,11 +49,30 @@ You can curl the server to test it:
 curl http://localhost:8000/v1/completions \
     -H "Content-Type: application/json" \
     -d '{
-        "model": "Groq/Llama-3-Groq-8B-Tool-Use",
-        "prompt": "San Francisco is a",
-        "max_tokens": 7,
-        "temperature": 0
+        "model": "facebook/opt-125m",
+        "prompt": "Dario Meira seria muito",
+        "max_tokens": 50,
+        "temperature": 0,
+        "api_key": "1234banana"
     }'
+```
+
+## Bonus: using LiteLLM to consume vLLM
+
+```bash
+base_url = "http://localhost:8000/v1"
+model_name = "facebook/opt-125m"
+api_key = "s3cr3t"
+
+# vLLM uses the OpenAI API, so we need to set the provider to "openai"
+PROVIDER = "openai"
+
+completion(
+    model=f"{PROVIDER}/{model_name}",
+    api_key=api_key,
+    base_url=base_url,
+    messages=messages,
+)
 ```
 
 Voila! You have vLLM running on your machine.
