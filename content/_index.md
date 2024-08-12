@@ -5,11 +5,10 @@
 title = "Hello World!"
 +++
 
-Hello! I'm George,
-a data scientist working in natural language processing.
-I write about AI, data science, and personal development. 
-I love running, exploring new technologies,
-and a bit of evolutionary psychology.
+Hello! I’m George, a data scientist.
+I write about AI, data science, and personal development.
+I also enjoy running, exploring new technologies, and dabbling a bit in evolutionary psychology.
+
 
 Feel free to browse around!
 
