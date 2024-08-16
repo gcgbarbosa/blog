@@ -7,8 +7,10 @@ title = "Hello World!"
 
 Hello! I’m George, a data scientist.
 I write about AI, data science, and personal development.
-I also enjoy running, exploring new technologies, and dabbling a bit in evolutionary psychology.
+I also enjoy running,
+exploring new technologies, and dabbling a bit in evolutionary psychology.
 
+Speaking of `Evol. Psychol.`, never forget to [breathe](https://clearmind.gcgbarbosa.com).
 
 Feel free to browse around!
 
@@ -19,4 +21,3 @@ Feel free to browse around!
 Happy reading!
 
 — Geo
-
