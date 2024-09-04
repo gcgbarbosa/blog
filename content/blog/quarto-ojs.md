@@ -37,7 +37,7 @@ quarto render hello.qmd --to html
 
 Beautiful. Now we can render html from qmd.
 
-![](/posts/observable/ggplot.png)
+![example test](/posts/observable/ggplot.png)
 
 While we are editing, we can also use the preview command:
 
@@ -95,6 +95,6 @@ ojs_define(airquality)
 
 ```
 
-![](/posts/observable/observable.png)
+![observable result](/posts/observable/observable.png)
 
 Beautiful.
