@@ -1,8 +1,7 @@
 +++
-title = "The bare minimum to get started with Quarto & ObservableJS with R"
+title = "Jumpstart Your Data Visualization: Quarto & ObservableJS with R"
 date = "2024-08-22T15:12:10-03:00"
-description = "Let's build quarto dashboards with R"
-
+description = "A step-by-step guide to creating plots using Quarto, ObservableJS, and R"
 tags = ["writing"]
 +++
 
