@@ -2,7 +2,7 @@
 title = "Getting Started with PocketBase and Vite+React+TypeScript"
 date = "2024-09-01T15:12:10-03:00"
 description = "A beginner's guide to setting up a full-stack application using PocketBase as a backend and Vite with React and TypeScript for the frontend."
-tags = ["productivity", "web development", "fullstack", "PocketBase", "Vite", "React", "TypeScript"]
+tags = ["productivity", "fullstack"]
 +++
 
 ## Why Pocketbase?
