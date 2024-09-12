@@ -125,7 +125,7 @@ const BASE_URL = "http://127.0.0.1:8090";
     return await pb.collection("users").authWithPassword(email, password);
   }, []);
 
-  const doLogin = async _ => login("gcgbarbosa@gmail.com", "ladygaga")
+  const doLogin = async _ => login("<email>", "<password>")
 
   doLogin().then(e => console.log(e))
 
