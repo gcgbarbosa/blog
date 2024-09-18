@@ -1,7 +1,7 @@
 +++
-title = "The bare minimum to get started with NvChad and Neovim"
+title = "Setting Up Neovim with NvChad"
 date = "2024-08-02"
-description = "What George think about getting started with with NvChad and Neovim"
+description = "Step-by-step instructions to install Neovim using the AppImage, configure NvChad, add essential plugins, customize keymaps, and enhance your development experience with Treesitter and Mason."
 tags = [
     "util",
 ]
@@ -60,7 +60,7 @@ map("n", "<leader>gg", "<cmd> Neogit <cr>")
 
 ### Default maps that you should know
 
-- `SPC f f`: Fuzzy find all files in the current directory 
+- `SPC f f`: Fuzzy find all files in the current directory
 
 ## Treesitter
 
@@ -89,7 +89,6 @@ Mason is a Neovim plugin that provides an integrated way
 to manage external dependencies
 like LSP servers, linters, and formatters directly from Neovim.
 
-
 ### Adding `python-lsp-server`
 
 As an example we are going to install [https://github.com/python-lsp/python-lsp-server](python-lsp-server).
@@ -101,7 +100,7 @@ We need to add `pylsp` to local servers:
 local servers = { "html", "cssls", "pylsp" }
 ```
 
-Lets also add an example configuration. Append the 
+Lets also add an example configuration. Append the
 
 ```lua
 lspconfig.pylsp.setup {
@@ -121,4 +120,3 @@ We are setting the maximum line length to 125.
 
 That's it.
 You just got started with `nvim` and `NvChad`.
-

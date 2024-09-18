@@ -20,4 +20,4 @@ Feel free to browse around!
 
 Happy reading!
 
-— Geo
+![Logo](/logo.png)

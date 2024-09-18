@@ -1,7 +1,8 @@
 +++
-title = "The bare minimum to get started with vLLM"
+title = "Setting Up vLLM with Hugging Face for Generative AI Projects"
+description = "A comprehensive guide to installing vLLM, integrating it with Hugging Face, and deploying a generative AI server. Learn how to test your setup and leverage LiteLLM for enhanced functionality."
 date = "2024-08-03"
-description = "A brief guide to get started with vLLM"
+description = ""
 tags = [
     "generative-ai",
 ]
@@ -27,7 +28,7 @@ You will pull the models from Hugging Face, so you need to be logged in.
 
 ## Start vLLM server
 
-Run: 
+Run:
 
 ```bash
 docker run -it \
