@@ -33,7 +33,7 @@ Create a `weaviate.py` file and add the following:
 
 ```python
 import weaviate
-client = weaviate.connect_to_local(headers=headers)
+client = weaviate.connect_to_local()
 ```
 
 ### Basic Operations
