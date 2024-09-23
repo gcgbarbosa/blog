@@ -3,7 +3,8 @@ title = "Setting Up Neovim with NvChad"
 date = "2024-08-02"
 description = "Step-by-step instructions to install Neovim using the AppImage, configure NvChad, add essential plugins, customize keymaps, and enhance your development experience with Treesitter and Mason."
 tags = [
-    "util",
+  "productivity",
+  "writing"
 ]
 +++
 

@@ -3,7 +3,7 @@ title = "Reveal.js super quick"
 date = "2022-06-10"
 description = "Text-based presentation tools can reduce hours spent & improve reusability."
 tags = [
-    "util",
+    "writing",
 ]
 +++
 
@@ -54,3 +54,4 @@ Run the command below to get the `index.html` with your presentation.
 ```bash
 pandoc -t revealjs -s -o index.html slides.md -V revealjs-url=https://unpkg.com/reveal.js/
 ```
+

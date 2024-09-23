@@ -3,7 +3,8 @@ title = "Setting Up Structurizr for Local Authoring: A Step-by-Step Guide"
 description = "Learn how to set up Structurizr for local authoring, including creating DSL files, running Structurizr Lite with Docker, and installing the Structurizr CLI. Follow this comprehensive guide to streamline your software architecture documentation workflow."
 date = 2024-08-16T11:08:41-03:00
 tags = [
-    "util",
+  "productivity",
+  "documentation"
 ]
 +++
 

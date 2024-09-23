@@ -3,7 +3,6 @@ title = "The bare minimum to get started with Typst"
 date = "2024-07-27"
 description = "How to write using Typst"
 tags = [
-    "util",
     "writing"
 ]
 +++
@@ -37,6 +36,7 @@ After running:
 ```sh
 typst compile hello_world.typ
 ```
+
 Should render `hello_world.pdf`:
 
 ![](/typst/hello_world.png)
@@ -45,4 +45,3 @@ Should render `hello_world.pdf`:
 
 Their github page is [here](https://github.com/typst/typst).
 Good luck :)
-

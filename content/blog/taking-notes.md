@@ -3,7 +3,8 @@ title = "Taking notes & good science"
 date = "2023-01-01"
 description = "Life get's hard when you forget... and forgetting is done constantly"
 tags = [
-    "util",
+  "writing",
+  "science"
 ]
 +++
 
@@ -12,19 +13,18 @@ You can't have good science without taking notes unless you remember what you ha
 Googling brings up some good things about note-taking in general:
 
 1. Cornell Method: Divide your notepaper into a main notetaking area, a cue column, and a summary section. It is a valuable technique for organizing information and reviewing notes later.
-    
+
 2. Mapping: This visual way of note-taking involves creating a diagram or mind map of related concepts and ideas. It is helpful for brainstorming, problem-solving, and understanding complex relationships.
-    
+
 3. Charting: Charting involves creating tables, graphs, or charts to organize and summarize information. It helps compare and contrast concepts, data analysis, and identify patterns.
-    
+
 4. Outlining: Outlining involves creating an organized information hierarchy using headings and subheadings. It helps summarize and synthesize information and identify the main points of a text.
-    
+
 5. Sketchnoting: Sketchnoting involves combining images, icons, and text to capture information. It is helpful for creative thinking, engagement, and making connections between ideas.
-    
+
 6. Getting Things Done (GTD) is a productivity method that involves capturing all your tasks, organizing them, and prioritizing what's important. It helps reduce stress and increase productivity by keeping a clear mind.
-    
+
 7. Zettelkasten: This notetaking system involves creating small notes containing individual ideas or concepts and linking them together using a unique identifier, allowing for complex ideas to be built and connected over time.
-    
 
 The last two items are systems for notetaking. If something has at least two approaches, we can call it hard; you must agree, no?
 
@@ -78,12 +78,12 @@ This is **emacs**:
 Simply put, this will help you by preventing overload.
 
 1. **Information Overload**: Scientists are constantly flooded with new data, research papers, and scientific studies that are sometimes difficult to process, analyze and identify legitimate findings. Information overload can lead to a misinterpretation of data, incorrect conclusions, and wasted resources.
-    
+
 2. **Choice Overload**: Sometimes, scientists have to choose between different options or methods to conduct their research. Too many choices can lead to indecision, wasted time, and missed opportunities. Also, when researchers are overwhelmed by the number of options available, they tend to default to the most familiar method, which can result in a lack of innovation.
-    
+
 3. **Collaborative Overload**: Scientific research requires collaboration between multiple scientists, universities, and institutions. However, collaborative overload can result in redundancy, repeating experiments in a different agency, lowered efficiencies, and stalled science.
-    
+
 4. **Technological Overload**: With technological advancements, scientific research is becoming more data-driven than ever. However, the flood of data has resulted in a technological overload, leading to tools and software development, sometimes of questionable value.
-    
 
 Be a good scientist. **Take notes**. Make your work auditable and replicable at least a bit because the world is brutal, my fellow researcher. Scary place. Wonderful but scary.
+

@@ -2,7 +2,10 @@
 title = "Getting Started with Weaviate"
 date = "2024-09-18T15:12:10-03:00"
 description = "Learn how to set up Weaviate, perform basic operations, and leverage hybrid queries for efficient vector and text-based searches."
-tags = ["generative-ai"]
+tags = [
+  "generative-ai",
+  "search"
+]
 +++
 
 

@@ -3,7 +3,7 @@ title = "The case for custom ergonomic keyboards"
 date = "2023-07-01"
 description = "It is never early to start preventing repetitive strain injury"
 tags = [
-    "util",
+    "productivity",
 ]
 +++
 
@@ -111,6 +111,6 @@ The parts are:
         * [https://www.amazon.com/gp/product/B073W2C9SK/ref=ppx\_yo\_dt\_b\_search\_asin\_title?ie=UTF8&psc=1](https://www.amazon.com/gp/product/B073W2C9SK/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
       * Camera mount clamp with 1/4 screw
         * [https://www.amazon.com/gp/product/B07QV1HYVZ/ref=ppx\_yo\_dt\_b\_search\_asin\_title?ie=UTF8&psc=1](https://www.amazon.com/gp/product/B07QV1HYVZ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
-                
 
 Once you get the parts, you need to put it together, solder it in place, flash the firmware, and learn how to use your new device.
+

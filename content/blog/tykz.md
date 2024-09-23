@@ -3,7 +3,7 @@ title = "Transforming Images with TikZ in LaTeX"
 date = "2023-03-28"
 description = "Learn how to convert simple images into professional-quality graphics using the TikZ package in LaTeX. This guide covers the basics of TikZ, provides step-by-step instructions, and includes practical examples to enhance your scientific documents."
 tags = [
-    "util",
+    "writing",
 ]
 +++
 
