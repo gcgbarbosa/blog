@@ -55,8 +55,10 @@ Insert data into your collection:
 
 ```python
 collection = client.collections.get("<collection_name>")
-collection.data.insert({"property": "text"}, vector: list[float]=vector)
+collection.data.insert({"property": "text"}, vector: list[float=vector)
 ```
+
+Where `vector` should be a `list[float]`.
 
 #### Search
 
