@@ -48,11 +48,10 @@ docker pull structurizr/lite
 Run a container from the image:
 
 ```bash
-export STRZR="<path_to>/strzr/"
-docker run -it --rm -p 8080:8080 -v $STRZR:/usr/local/structurizr structurizr/lite
+docker run -it --rm -p 8080:8080 -v `pwd`:/usr/local/structurizr structurizr/lite
 ```
 
-Then open <http://localhost:8080>.
+Then open <http://localhost:8080/workspace/diagrams>
 
 You should see this:
 
