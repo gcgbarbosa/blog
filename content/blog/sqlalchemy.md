@@ -1,5 +1,4 @@
 +++
-title = "{llm_response}"
 title = "Working with SQLAlchemy 2.0: A lightning fast guide" 
 date = "2024-10-02T16:22:56-03:00"
 
