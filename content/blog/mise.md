@@ -109,3 +109,14 @@ mise run build
 ```
 
 That's it!
+
+## Bonus
+
+Enable [just](https://github.com/casey/just)
+completions by adding this to your mise global file:
+
+```toml
+[hooks.enter]
+shell = "bash"
+script = "eval '$(just --completions zsh)'"
+```
