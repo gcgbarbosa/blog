@@ -4,7 +4,7 @@ theme = 'hugo-bearblog'
 
 title = "gcgbarbosa's"
 author = "George C. G. Barbosa"
-copyright = "Copyright © 2024, gcgbarbosa."
+copyright = "Copyright © 2025 @gcgbarbosa"
 languageCode = "en-US"
 
 publishDir = "public"
