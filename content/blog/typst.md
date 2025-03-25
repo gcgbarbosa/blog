@@ -39,7 +39,7 @@ typst compile hello_world.typ
 
 Should render `hello_world.pdf`:
 
-![](/typst/hello_world.png)
+![hello world typst](/posts/typst/hello_world.png)
 
 ## Where do I go from here?
 
