@@ -74,7 +74,7 @@ session_service.create_session(
 The last thing you need is the runner:
 
 ```python
-Runner(
+runner = Runner(
     agent=agent,
     app_name=app_name,
     session_service=session_service,
@@ -89,7 +89,7 @@ async def run_agent(message: str):
 
   # Execute the agent and get the final response
   final_response = ""
-  async for event in self.runner.run_async(
+  async for event in runner.run_async(
       user_id=user_id,
       session_id=session_id,
       new_message=content,
