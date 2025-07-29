@@ -1,5 +1,5 @@
 +++
-title = "TIL docstrings for Enums are placed below the attriute in python"
+title = "TIL docstrings for Enums are placed below the attribute in python"
 date = "2025-07-28T11:31:36+02:00"
 
 tags = ["development"]
@@ -13,7 +13,7 @@ can be consumed by the LLM API.
 
 I did not know, but for Enums, the docstrings are placed below the attribute, not above it.
 
-````python
+```python
 from enum import Enum
 
 class Status(Enum):
@@ -28,12 +28,13 @@ class Status(Enum):
 # --- Accessing the docstrings ---
 print(f"Docstring for PENDING: '{Status.PENDING.__doc__}'")
 print(f"Docstring for SUCCESS: '{Status.SUCCESS.__doc__}'")
+```
 
 Will result in:
 
 ```plaintext
 Docstring for PENDING: 'The task is waiting to be executed.'
 Docstring for SUCCESS: 'The task completed successfully.'
-````
+```
 
 That's it. Funny stuff.
