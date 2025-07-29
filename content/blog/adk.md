@@ -15,6 +15,8 @@ but I felt like the documentation lacked a straight forward example to just copy
 
 This is what I tried to do here.
 
+## Create a new project and install google-adk using uv
+
 ```sh
 uv init adk
 cd adk
@@ -23,6 +25,8 @@ uv sync
 ```
 
 And you're good to go in terms of boilerplate.
+
+## Then add the code
 
 First, import the imports:
 
@@ -80,7 +84,6 @@ Runner(
 Now you can receive a message from the user or another agent and run it trough the agent that you just created:
 
 ```python
-
 async def run_agent(message: str):
   content = types.Content(role="user", parts=[types.Part(text=message)])
 
