@@ -5,13 +5,10 @@ date = "2025-07-28T11:31:36+02:00"
 tags = ["development"]
 +++
 
-When you're dealing with LLM's structured output, sometimes adding doctrings
-help the structured decoding process.
-
-In python, docstrings are used when serializing the Pydantic/dataclasses to JSON before they
+In python, docstrings can be used when serializing the Pydantic/dataclasses to JSON before they
 can be consumed by the LLM API.
 
-I did not know, but for Enums, the docstrings are placed below the attribute, not above it.
+I did not know, but for Enums, the docstrings are placed below the attribute:
 
 ```python
 from enum import Enum
@@ -38,3 +35,5 @@ Docstring for SUCCESS: 'The task completed successfully.'
 ```
 
 That's it. Funny stuff.
+
+Source: [issue#1725](https://github.com/microsoft/python-language-server/issues/1725) of PLS.
