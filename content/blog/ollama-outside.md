@@ -10,13 +10,13 @@ date = "2025-08-07T15:24:38+02:00"
 tags = ["generative-ai"]
 +++
 
-Ollama runs on port 11434 (an alusion to llama if you did not know).
+Ollama runs on port 11434 (an allusion to llama if you did not know).
 
 If you run it on your machine and try to access it from another machine in your network, you will realize it does not work.
 This is because Ollama binds to `localhost` by default.
 
 In order to fix this, you need to set the `OLLAMA_HOST` environment variable to `0.0.0.0`.
-This tell Ollama to listen on all network interfaces.
+This tells Ollama to listen on all network interfaces.
 
 What you can do is edit the `sudo vi /etc/systemd/system/ollama.service` file
 and add `Environment="OLLAMA_HOST=0.0.0.0"` to it.
