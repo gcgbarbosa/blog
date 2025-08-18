@@ -20,7 +20,7 @@ export default defineConfig({
 
   integrations: [expressiveCode({
     themes: ['github-dark', 'github-light'],      // light/dark out of the box
-    defaultProps: { wrap: true },                 // wrap long lines by default (optional)
+    defaultProps: {},                 // wrap long lines by default (optional)
     // Make code themes follow your DaisyUI theme (data-theme="dark|light"):
     customizeTheme(theme) {
       theme.name = theme.type; // renames to 'dark' or 'light'
