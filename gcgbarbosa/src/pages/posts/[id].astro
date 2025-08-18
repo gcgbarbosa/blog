@@ -1,5 +1,5 @@
 ---
-import DefaultLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from 'astro:content';
 
 import Prose from '../../components/Prose.astro';
@@ -17,9 +17,9 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 ---
 
-<DefaultLayout frontmatter={post.data}  headings={headings}>
+<BaseLayout pageTitle={post.data.title} frontmatter={post.data}  headings={headings}>
   <Prose>
     <Content />
   </Prose>
-</DefaultLayout>
+</BaseLayout>
 
