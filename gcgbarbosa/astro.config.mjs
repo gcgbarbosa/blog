@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+
 import tailwindcss from "@tailwindcss/vite";
 
 import expressiveCode from 'astro-expressive-code';
@@ -19,7 +20,7 @@ export default defineConfig({
   },
 
   integrations: [expressiveCode({
-    themes: ['github-dark', 'github-light'],      // light/dark out of the box
+    themes: ['catppuccin-mocha', 'dark-plus'],      // light/dark out of the box
     defaultProps: {},                 // wrap long lines by default (optional)
     // Make code themes follow your DaisyUI theme (data-theme="dark|light"):
     customizeTheme(theme) {
