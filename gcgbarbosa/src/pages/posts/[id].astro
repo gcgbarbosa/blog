@@ -6,7 +6,6 @@ import Prose from '../../components/Prose.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  console.log(posts)
   return posts.map((post) => ({
     params: { id: post.id },
     props: { post },
