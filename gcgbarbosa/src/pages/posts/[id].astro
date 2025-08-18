@@ -1,0 +1,21 @@
+---
+import DefaultLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  console.log(posts)
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<DefaultLayout frontmatter={post.data}  headings={headings}>
+  <Content />
+</DefaultLayout>
+
