@@ -1,0 +1,46 @@
+---
+title: "Accessing Ollama from other machines"
+date: 2025-08-07
+description: "An optional description for SEO. If not provided, an automatically created summary will be used."
+tags: ["generative-ai"]
+---
+
+Ollama runs on port 11434 (an allusion to llama if you did not know).
+
+If you run it on your machine and try to access it from another machine in your network, you will realize it does not work.
+This is because Ollama binds to `localhost` by default.
+
+In order to fix this, you need to set the `OLLAMA_HOST` environment variable to `0.0.0.0`.
+This tells Ollama to listen on all network interfaces.
+
+What you can do is edit the `sudo vi /etc/systemd/system/ollama.service` file
+and add `Environment="OLLAMA_HOST=0.0.0.0"` to it.
+
+The complete file might look like this:
+
+```plaintext title="ollama.service"
+[Unit]
+Description=Ollama Service
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/ollama serve
+User=ollama
+Group=ollama
+Restart=always
+RestartSec=3
+Environment="PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+Environment="OLLAMA_HOST=0.0.0.0"
+
+[Install]
+WantedBy=default.target
+```
+
+Save that file and then run:
+
+```sh
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+```
+
+Voila!
