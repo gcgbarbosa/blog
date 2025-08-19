@@ -7,6 +7,8 @@ import expressiveCode from 'astro-expressive-code';
 
 import mdx from '@astrojs/mdx';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -28,4 +30,6 @@ export default defineConfig({
     },
     // frames: { showCopyToClipboardButton: true } // on by default
   }), mdx()],
+
+  adapter: netlify(),
 });
