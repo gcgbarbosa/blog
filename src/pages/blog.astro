@@ -11,6 +11,7 @@ const uniqueTags = [...new Set(posts.map((post: any) => post.data.tags).flat())]
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+
   <PostsList posts={posts} />
 
   <div class="divider"></div>

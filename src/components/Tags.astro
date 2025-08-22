@@ -6,7 +6,7 @@ const { tags } = Astro.props;
     {
       tags.map(tag => (
         <div class="badge badge-dash badge-info">
-          <a class="link link-hover link-primary" href={`/tags/${tag}`}>{tag}</a>
+          <a class="link link-hover link-primary" href={`/tags/${tag}`}>#{tag}</a>
         </div>
       ))
     }
