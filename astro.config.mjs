@@ -26,6 +26,13 @@ export default defineConfig({
   integrations: [expressiveCode({
     themes: ['catppuccin-mocha', 'dark-plus'],      // light/dark out of the box
     defaultProps: {},                 // wrap long lines by default (optional)
+    styleOverrides: {
+      uiFontSize: "0.7rem",
+      uiFontFamily: "Anonymous Pro",
+      codeFontSize: '0.7rem',
+      codeFontFamily: "Anonymous Pro"
+    },
+
     // Make code themes follow your DaisyUI theme (data-theme="dark|light"):
     customizeTheme(theme) {
       theme.name = theme.type; // renames to 'dark' or 'light'
