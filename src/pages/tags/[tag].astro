@@ -34,8 +34,8 @@ const { posts, uniqueTags } = Astro.props;
 
   <div class="divider"></div>
 
-  <div class="flex flex-row">
-    <span class="mr-2 flex-none">All tags:</span>
+  <div class="flex flex-col gap-y-2">
+    <span class="flex-none">All tags:</span>
     <Tags tags={uniqueTags} />
   </div>
 </BaseLayout>
