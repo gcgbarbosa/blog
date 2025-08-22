@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostsList from '../../components/PostsList.astro'
+import { getCollection} from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  const uniqueTags = [...new Set(posts.map((post: any) => post.data.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = posts.filter((post: any) => post.data.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+  
+  // this would generate two entries, one for "astro" and one for "learning
+  // return [
+  //   { params: { tag: "astro" } },
+  //   { params: { tag: "learning in public" } },
+  // ];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+<BaseLayout pageTitle={tag}>
+  <PostsList posts={posts} />
+</BaseLayout>
