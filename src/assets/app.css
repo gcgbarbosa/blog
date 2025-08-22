@@ -14,3 +14,7 @@
   --font-mono: 'Anonymous Pro', 'monospace';
   --font-primary: 'Montserrat', 'sans-serif';
 }
+
+@layer base {
+  html { font-size: 14px; } /* default is ~16px;*/
+}
