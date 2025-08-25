@@ -1,27 +1,27 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 import "../assets/app.css";
 
 const { pageTitle } = Astro.props;
 ---
+
 <html lang="en" data-theme="night">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link
-        rel="alternate"
-        type="application/rss+xml"
-        title="DevGeo | Blog"
-        href={new URL("rss.xml", Astro.site)}
+      rel="alternate"
+      type="application/rss+xml"
+      title="DevGeo | Blog"
+      href={new URL("rss.xml", Astro.site)}
     />
     <title>{pageTitle + " - gcgbarbosa.com"}</title>
   </head>
   <body class="min-h-[100svh] flex flex-col bg-base-100 text-base-content">
-
     <header class="mb-8 lg:mb-8">
       <Header />
     </header>
@@ -32,9 +32,8 @@ const { pageTitle } = Astro.props;
       </div>
     </main>
 
-    <footer class="mt-8 lg:mt-8"> 
+    <footer class="mt-8 lg:mt-8">
       <Footer />
     </footer>
-
   </body>
 </html>

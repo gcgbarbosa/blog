@@ -3,24 +3,24 @@ const { posts } = Astro.props;
 ---
 
 <ul class="list bg-base-100 rounded-box shadow-md">
-    {posts
+  {
+    posts
       .sort((a, b) => new Date(b.data.date) - new Date(a.data.date)) // newest first
-      .map(post => (
+      .map((post) => (
         <li class="list-row">
           <div>
             <a class="link" href={`/posts/${post.id}`}>
               <div class="text-xl font-semibold">{post.data.title}</div>
             </a>
             <div class="list-col-wrap text-xs">
-              {post.data.date.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+              {post.data.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
               })}
             </div>
           </div>
         </li>
       ))
-    }
-  </ul>
-
+  }
+</ul>

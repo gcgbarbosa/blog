@@ -1,36 +1,41 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Prose from '../components/Prose.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
 const pageTitle = "George's Home";
 ---
+
 <BaseLayout pageTitle={pageTitle}>
   <main>
     <Prose>
       <p>
-        Hello, welcome to my blog :)
-        I write about AI, data science, and personal development.
-        I also enjoy running, exploring new technologies, and a bit of evolutionary psychology.
+        Hello, welcome to my blog :) I write about AI, data science, and
+        personal development. I also enjoy running, exploring new technologies,
+        and a bit of evolutionary psychology.
       </p>
       <p>
-        Speaking of <code>Evol. Psychol.</code>, never forget to <a href="https://clearmind.gcgbarbosa.com">breathe</a>.
+        Speaking of <code>Evol. Psychol.</code>, never forget to <a
+          href="https://clearmind.gcgbarbosa.com">breathe</a
+        >.
       </p>
-      <p>
-      Feel free to browse around!
-      </p>
+      <p>Feel free to browse around!</p>
       <ul>
         <li>
-          <strong>About Me</strong>: <a href="https://github.com/gcgbarbosa">More about my work</a>
+          <strong>About Me</strong>: <a href="https://github.com/gcgbarbosa"
+            >More about my work</a
+          >
         </li>
         <li>
-          <strong>Latest Posts</strong>: <a href="/blog">Check out my latest articles</a>
+          <strong>Latest Posts</strong>: <a href="/blog"
+            >Check out my latest articles</a
+          >
         </li>
         <li>
-          <strong>Contact</strong>: <a href="mailto:gcgbarbosa@gmail.com">Get in touch</a>
+          <strong>Contact</strong>: <a href="mailto:gcgbarbosa@gmail.com"
+            >Get in touch</a
+          >
         </li>
       </ul>
-      <p>
-        Happy reading!
-      </p>
+      <p>Happy reading!</p>
     </Prose>
   </main>
 </BaseLayout>

@@ -1,17 +1,18 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import PostsList from '../components/PostsList.astro'
-import Tags from '../components/Tags.astro'
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostsList from "../components/PostsList.astro";
+import Tags from "../components/Tags.astro";
+import { getCollection } from "astro:content";
 
 const pageTitle = "Blog";
-const posts = await getCollection('blog');
+const posts = await getCollection("blog");
 
-const uniqueTags = [...new Set(posts.map((post: any) => post.data.tags).flat())];
+const uniqueTags = [
+  ...new Set(posts.map((post: any) => post.data.tags).flat()),
+];
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-
   <PostsList posts={posts} />
 
   <div class="divider"></div>
