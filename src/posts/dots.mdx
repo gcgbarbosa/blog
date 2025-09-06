@@ -1,0 +1,86 @@
+---
+title: "A simple way to keep and use your dotfiles"
+date: 2025-09-01
+description: ""
+tags: ["productivity", "linux"]
+---
+
+Reinstalling a system is usually boring and laboring.
+Why don't we speed it up?
+
+We can do it by keeping our Dot Files organzied and ready.
+
+## Dot Files
+
+But what are Dot Files?
+
+Dot Files (we're calling them from now on “dotfiles”) are files on Unix-like systems whose names (usually) start with a period,
+used to keep configurations.
+
+Common examples are:
+
+- `.bashrc` – settings for the Bash shell.
+- `.zshrc` – settings for the Zsh shell.
+- `.gitconfig` – personal Git configuration (username, email, aliases).
+
+Why care? If you back them up, you can easily transfer your settings to a new machine.
+
+Note that those can also be folders such as `.ssh`.
+
+## Eget
+
+Some softwares are distributed as releases on their github pages.
+We can grab the one by one or use [eget](https://github.com/zyedidia/eget) to grab them for us.
+
+Eget is a little program that goes to the github page, downloads the binary, and place them inside the bin folder of our system.
+
+I use the following `eget.toml` configuration file:
+
+```toml
+[global]
+target = "~/.local/bin"
+upgrade_only = true
+```
+
+I keep an `eget.txt` file and install them one by one by running:
+
+```sh
+eget <git_user/repo_name>
+```
+
+I usually do this one by one. Why? I want to make sure the software I am installing is still relevant to me.
+
+## Package Managers
+
+Some other programs are only installed via package managers.
+
+For those, I keep a `<package-manager.txt>` file, and then install them one by one.
+
+Some example of package managers include:
+
+- `apt` for Debian-based systems.
+- `homebrew` for macOS
+- `pacman` for Arch
+
+## Symbolic Links
+
+I keep a github repository with all my dotfiles inside.
+
+I usually export the dots folder using:
+
+```sh
+export DOTS_PATH="${HOME}/repos/dots"
+```
+
+Then, I create symbolic links from the proper dotfile location to the ones inside the repository:
+
+```sh
+ln -s ${DOTS_PATH}/.bashrc ${HOME}
+```
+
+I also add symlinks one by one, for the same reason as before.
+
+## Keep a README.md
+
+This one is self descriptive.
+Help your future self out by keeping a `README.md` so that you know what you did.

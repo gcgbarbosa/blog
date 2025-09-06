@@ -1,0 +1,3 @@
+
+[tasks.serve]
+run = "npm run dev"
