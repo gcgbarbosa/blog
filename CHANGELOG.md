@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Clicking on logo goes to home
+- Lint: ignore same header message
+
 ## [2.0.0] - 2025-08-01
 
 ### Changed
