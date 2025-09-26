@@ -1,0 +1,343 @@
+---
+title: "Four ways to run SPARQL queries on your RDF data"
+date: 2025-09-26
+description: ""
+tags: ["data", "search"]
+---
+
+import { Image } from "astro:assets";
+import blazegraphImage from "../assets/images/sparql/blazegraph.png";
+
+SPARQL looks scary at first.
+All caps, weird keywords, curly braces in odd places.
+But trust me, it’s not that bad once you get the hang of it.
+
+If SQL is for databases, SPARQL is for graphs.
+Specifically RDF graphs (Resource Description Framework).
+Think of it as querying relationships instead of just tables.
+
+If SPARQL is the query language, RDF is the _thing_ it queries.
+
+## The RDF idea
+
+Everything in RDF is a triple: subject, predicate, object.
+Like this:
+
+```text
+<George> <likes> <Keyboards> .
+```
+
+That’s it. Just who, what, and something about them.
+SPARQL is the way we query those triples.
+
+### Serializations
+
+You can serialize RDF in different formats.
+
+XML:
+
+```xml
+<rdf:Description rdf:about="http://gcgbarbosa.com/George">
+  <ex:likes rdf:resource="http://gcgbarbosa.com/Keyboards"/>
+</rdf:Description>
+```
+
+JSON-LD:
+
+```json
+{
+  "@context": { "ex": "http://gcgbarbosa.com/" },
+  "@id": "ex:George",
+  "ex:likes": "ex:Keyboards"
+}
+```
+
+Turtle:
+
+```turtle
+@prefix ex: <http://gcgbarbosa.com/> .
+ex:George ex:likes ex:Keyboards
+```
+
+#### What’s with the prefix?
+
+RDF uses URIs (web-style identifiers) for everything.
+Why URIs?
+
+If I just write:
+
+```text
+<George> <likes> <Keyboards> .
+```
+
+You have no idea _which_ George I mean.
+Your friend George? My uncle George? Is it curious George?
+
+But if I say:
+
+```rawtext
+<http://gcgbarbosa.com/George> <http://gcgbarbosa.com/likes> <http://gcgbarbosa.com/Keyboards> .
+```
+
+Now you know exactly which George I mean.
+“George” in our dataset is globally unique.  
+No mix-ups. No collisions.
+
+Then using a prefix makes sense:
+
+```turtle
+@prefix ex: <http://gcgbarbosa.com/> .
+ex:George ex:likes ex:Keyboards.
+
+```
+
+## First SPARQL query
+
+Let’s say we have a dataset of people and what they like.
+Here’s the most boring SPARQL query:
+
+```sparql
+SELECT ?s ?p ?o
+WHERE {
+  ?s ?p ?o .
+}
+```
+
+In plain english, this means "give me everything."
+The ?s, ?p, and ?o are variables.
+You’ll get back a table of all triples.
+
+## Tools to setup SPARQL endpoints
+
+To begin with, our SPARQL endpoint needs to read RDF data.
+Let's assume we have a turtle file named `dump.ttl`.
+
+### HDT
+
+HDT = **Header, Dictionary, Triples**.
+It’s a binary format for RDF that’s:
+
+- **Compressed** → much smaller on disk.
+- **Queryable** → you can still run lookups directly.
+- **Streamable** → load big graphs without eating all your RAM.
+
+It’s like a `.zip` for RDF, but smarter.
+You don’t have to decompress everything just to read it.
+
+#### Setup
+
+To run SPARQL queries on HDT files, we first need to convert our RDF to HDT.
+To do that, we're going to use [rdf2hdt](https://crates.io/crates/rdf2hdt).
+Rust & cargo are required for this step.
+Once you've got cargo installed, run:
+
+```sh
+cargo install rdf2hdt
+rdf2hdt convert -i dump.ttl -o dump.hdt
+```
+
+#### Running queries
+
+To run the queries, we are going to use [rdflib-hdt](https://github.com/RDFLib/rdflib-hdt).
+Assuming you have `uv` installed, create a new project and add `rdflib-hdt`:
+
+```sh
+uv init sparql-hdt
+cd sparql-hdt
+uv add rdflib-hdt
+```
+
+We can use the following code to run a query:
+
+```python
+from rdflib import Graph
+from rdflib_hdt import HDTStore, optimize_sparql
+
+# Calling this function optimizes the RDFlib SPARQL engine for HDT documents
+optimize_sparql()
+
+graph = Graph(store=HDTStore("dump.hdt"))
+
+q = (
+  "SELECT ?s ?p ?o "
+  "WHERE { "
+  "  ?s ?p ?o . "
+  "}"
+)
+
+# You can execute SPARQL queries using the regular RDFlib API
+qres = graph.query(q)
+for row in qres:
+    print(row)
+
+```
+
+That's it.
+
+### Blazegraph
+
+Blazegraph is an **RDF graph database** (aka a _triplestore_).
+It’s open source and written in Java.
+
+#### Setup
+
+We can download blazegraph from github
+[https://github.com/blazegraph/database/releases](https://github.com/blazegraph/database/releases).
+
+Then run the server with:
+
+```sh
+java -server -Xmx4g -jar blazegraph.jar
+```
+
+Then upload the data using the UI at
+[http://localhost:9999/blazegraph/#update`](http://localhost:9999/blazegraph/#update):
+
+<Image width="600" src={blazegraphImage} alt="blazegraph update UI" />
+
+#### Running queries
+
+To run the queries we can use [SPARQLWrapper](https://github.com/RDFLib/sparqlwrapper):
+
+```sh
+uv add sparqlwrapper
+```
+
+Then we can then run the queries:
+
+```python
+from SPARQLWrapper import SPARQLWrapper, JSON
+import time
+
+endpoint = "http://localhost:9999/bigdata/sparql"
+
+sparql = SPARQLWrapper(endpoint)
+
+q = (
+  "SELECT ?s ?p ?o "
+  "WHERE { "
+  "  ?s ?p ?o . "
+  "}"
+)
+
+sparql.setQuery(q)
+sparql.setReturnFormat(JSON)
+results = sparql.query().convert()
+
+for result in results["results"]["bindings"]:
+    print(result)
+```
+
+### Qlever
+
+Most triplestores (Blazegraph, Virtuoso, Fuseki) follow the same database approach.
+Qlever takes a search-engine approach instead:
+
+- **Indexes everything** → subjects, predicates, objects, and even text.
+- **Hybrid search** → mix structured SPARQL with full-text search.
+- **Optimized for joins** → the expensive part of SPARQL queries.
+
+#### Setup
+
+We can setup Qlever using its CLI.
+Let's install it by creating a new python project and adding [qlever](https://github.com/ad-freiburg/qlever).
+
+```sh
+uv init qlever-test
+cd qlever-test
+uv add qlever
+```
+
+Once we have it installed, we can index our data.
+Qlever uses a configuration file to define the dataset and indexing options.
+
+We are going to create a file named `Qleverfile` and add the following:
+
+```text
+[data]
+NAME             = toydata
+GET_DATA_CMD     = echo "We don't need to download any data"
+DESCRIPTION      = This is our toy data
+
+[index]
+INPUT_FILES     = dump.ttl
+CAT_INPUT_FILES = cat ${INPUT_FILES}
+SETTINGS_JSON   = { "ascii-prefixes-only": false, "num-triples-per-batch": 1000000 }
+TEXT_INDEX      = from_literals
+
+[server]
+PORT               = 7041
+ACCESS_TOKEN       = ${data:NAME}
+MEMORY_FOR_QUERIES = 10G
+
+[runtime]
+SYSTEM = docker
+IMAGE  = docker.io/adfreiburg/qlever:latest
+
+[ui]
+UI_CONFIG = toydata
+```
+
+We can then index the data and start Qlever:
+
+```sh
+qlever index
+qlever start
+```
+
+The sparql endpoint will be available at `http://localhost:7041/`.
+
+#### Running queries
+
+To run the queries we can use the same steps from [blazegraph](#blazegraph).
+
+We just need to change the endpoint to:
+
+```python
+endpoint = "http://localhost:7041"
+```
+
+That's it!
+
+### Oxigraph
+
+Oxigraph is an **RDF database + SPARQL engine**, written in **Rust**.
+It is embeddable, and you use it as a library inside your own app.
+
+#### Setup
+
+First, we need to install [oxigraph](https://github.com/oxigraph/oxigraph/):
+
+```sh
+uv init oxigraph-test
+cd oxigraph-test
+uv add pyoxigraph
+```
+
+It can be embedded in our app.
+
+#### Running queries
+
+To run the queries, we can use the code below:
+
+```python
+from pyoxigraph import RdfFormat, Store
+
+store = Store()
+f = open("dump.ttl", "rb")
+store.bulk_load(f, format=RdfFormat.TURTLE)
+
+q = (
+  "SELECT ?s ?p ?o "
+  "WHERE { "
+  "  ?s ?p ?o . "
+  "}"
+)
+
+result = store.query(q)
+for binding in result:
+    print(binding)
+```
+
+That's it.
+Good luck!
