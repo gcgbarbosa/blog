@@ -1,26 +1,25 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import rss from "@astrojs/rss";
+
+import { getCollection } from "astro:content";
 
 export async function GET(context) {
-  const items = await pagesGlobToRssItems(import.meta.glob('../posts/*.mdx'));
+  const blog = await getCollection("blog");
 
-  const fixedLinks = items.map((item) => {
-    // remove "src/" and the ".mdx" extension
-    const cleanLink = item.link
-      .replace(/^src\//, '')   // drop "src/"
-      .replace(/\.mdx$/, ''); // drop ".mdx"
-
-    return {
-      ...item,
-      link: cleanLink,
-    };
-  });
+  blog.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
   return rss({
-    title: 'DevGeo | Blog',
-    description: 'Quick tips and tricks for developers and researchers.',
+    title: "DevGeo | Blog",
+    description: "Quick tips and tricks for developers and researchers.",
     site: context.site,
     trailingSlash: false,
-    items: fixedLinks,
+    items: blog.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.date,
+      description: post.data.description,
+      // Compute RSS link from post `id`
+      // This example assumes all posts are rendered as `/blog/[id]` routes
+      link: `/posts/${post.id}/`,
+    })),
     customData: `<language>en-us</language>`,
   });
 }
