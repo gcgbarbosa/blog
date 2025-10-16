@@ -1,0 +1,79 @@
+---
+title: "Enabling the merging gadget on your private Wikibase instance"
+date: 2025-10-16
+description: ""
+tags: ["kb"]
+---
+
+import { Image } from "astro:assets";
+import wizardImage from "../assets/images/wikibase-merge/merge-wizard.png";
+import preferencesImage from "../assets/images/wikibase-merge/preferences.png";
+import popupImage from "../assets/images/wikibase-merge/popup.png";
+
+You setup your Wikibase instance and want to allow users to merge items easily?
+You've probably realized your instance does not have the `Gadgets` tab.
+
+For those who don't know what I am talking about, Wikidata has one functionality
+that helps merging items:
+
+<Image width="400" src={wizardImage} alt="Merge wizard window" />
+
+For this post, I will assume you've installed your Wikibase instance using Docker,
+using the official repository from wmde: [wmde/wikibase-release-pipeline](https://github.com/wmde/wikibase-release-pipeline).
+
+## Requirements
+
+You're going to need the [Gadgets extension](https://www.mediawiki.org/wiki/Extension:Gadgets).
+The Merge gadget itself has requirements,
+but they should have come installed if you're using the Docker installation mentioned above.
+
+## Installing the Gadgets extension
+
+First download the [extension](https://www.mediawiki.org/wiki/Special:ExtensionDistributor/Gadgets)
+and extract it in your `/extensions` folder.
+
+Add the following line to your `Extensions.php` file:
+
+```php
+wfLoadExtension('extensions/Gadgets');
+```
+
+Restart your Docker container and check if the extension is enabled in your `wiki/Special:Version` page.
+
+## Adding the merge functionality
+
+Then go to `wiki/MediaWiki:Gadgets-definition` and add the following:
+
+```text
+=== wikidata ===
+* Merge[ResourceLoader|dependencies=mediawiki.api,oojs-ui,mediawiki.util,mediawiki.language,oojs-ui-windows,wikibase,wikibase.sites|rights=edit,item-merge,item-redirect|namespaces=0,120]|Merge.js
+```
+
+It should enable the merge gadget, and also point to the `Gadgets-Merge.js` page.
+Note that the namespaces are restricted to 0 and 120.
+This differs from wikidata.org, where the namespaces are 0 and 146.
+
+Copy the JavaScript code from
+[https://www.wikidata.org/wiki/MediaWiki:Gadget-Merge.js](https://www.wikidata.org/wiki/MediaWiki:Gadget-Merge.js)
+to your own `wiki/MediaWiki:Gadget-Merge.js` page.
+
+Replace `146` with `120` in the code. There should be two occurrences.
+
+Go to `wiki/MediaWiki:Gadget-section-wikidata` and add the name for `wikidata`
+section we added before.
+
+Also add a name to the gadget by editing `wiki/MediaWiki:Gadget-Merge`.
+
+Those names should appear when you go to your preferences page (`wiki/Special:Preferences#mw-prefsection-gadgets`).
+There, you're going to see something like this:
+
+<Image width="400" src={preferencesImage} alt="User preferences" />
+
+Tick the box and save your preferences.
+
+You should now see the option to merge items when you go to an item page:
+
+<Image width="150" src={popupImage} alt="Popup with the merge link" />
+
+That's it.
+Good luck!
