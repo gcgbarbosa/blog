@@ -1,0 +1,161 @@
+---
+title: "Writing hooks for TaskWarrior"
+date: 2025-12-11
+description: "Learn how to write Taskwarrior hooks in Python to trigger Ubuntu desktop notifications when tasks start or finish, using a practical on-modify example."
+tags: ["productivity"]
+---
+
+[Taskwarrior](http://taskwarrior.org/) is a CLI task manager that lets you track your to-dos using plain text.
+It is great. Seriously.
+
+You type the following to the CLI:
+
+```bash
+task add "do laundry"
+```
+
+Then if you do:
+
+```sh
+task list
+```
+
+It will be there:
+
+```text
+ID Active Age   Description   Urg
+1          6s   do laundry    0
+```
+
+You can set the task as active by typing:
+
+```sh
+task start 1
+```
+
+## Writing hooks
+
+Now, what if you want to trigger an action when you start a task?
+Let's do that.
+TaskWarrior hooks are scripts that run when certain events happen,
+letting you extend TaskWarrior’s behavior.
+
+As an example, we are going to show a notification on Ubuntu when a task is started or finished with `task done <id>`.
+On Ubuntu, sending a notification should look like:
+
+```sh
+notify-send "TaskWarrior" "Your task finished"
+```
+
+We are going to assume your TaskWarrior database is at `$HOME/.task` and your config at `$HOME/.taskrc`.
+
+To get started, create a `hooks` folder inside your `.task`.
+The types of hooks you can create can be found in the [documentation](https://taskwarrior.org/docs/hooks/).
+We are going to use the `on-modify` hook.
+
+The second thing you need to do is add this to your `.taskrc` file:
+
+```text
+debug=1
+debug.hooks=2
+```
+
+Once you do this, when you run TaskWarrior, you're going to see a bunch of debugging information.
+That will help you understand what is going on.
+
+For example, that is what I see when I run `task <id> start`:
+
+```text {6,9,10,11,12,13,22,23,24}
+❯ task start 6
+Starting task 6b9a20c5 'write a blog post about hooks in taskwarrior'.
+Started 1 task.
+Timer Config::load (/home/gcgbarbosa/.taskrc) 0.000259 sec
+No context set
+Found hook script /home/gcgbarbosa/.task/hooks/on-modify.message
+Filtered 34 tasks --> 1 tasks [pending only]
+Hook: Calling /home/gcgbarbosa/.task/hooks/on-modify.message
+Hook: input
+  {"description":"write a blog post about hooks in taskwarrior","due":"20251212T230000Z","entry":"20251113T134837Z","modified":"20251211T090632Z","project":"me.blog","status":"pending","uuid":"6b9a20c5-e22b-4be5-
+b148-52488e9d83a8"}
+  {"description":"write a blog post about hooks in taskwarrior","due":"20251212T230000Z","entry":"20251113T134837Z","modified":"20251211T090646Z","project":"me.blog","start":"20251211T090646Z","status":"pending",
+"uuid":"6b9a20c5-e22b-4be5-b148-52488e9d83a8"}
+Hooks: args
+  api:2
+  args:task start 6
+  command:start
+  rc:/home/gcgbarbosa/.taskrc
+  data:/home/gcgbarbosa/.task
+  version:3.4.2
+Timer Hooks::execute (/home/gcgbarbosa/.task/hooks/on-modify.message) 0.027545 sec
+Hook: output
+  {"description": "write a blog post about hooks in taskwarrior", "due": "20251212T230000Z", "entry": "20251113T134837Z", "modified": "20251211T090646Z", "project": "me.blog", "start": "20251211T090646Z", "status
+": "pending", "uuid": "6b9a20c5-e22b-4be5-b148-52488e9d83a8"}
+Hook: Completed with status 0
+
+Perf task 3.4.2 - 20251211T090646Z init:1181 load:2257 gc:0 filter:48 commit:0 sort:0 render:0 hooks:27793 other:4267 total:33289
+You have more urgent tasks.
+Project 'me.blog' is 0% complete (1 task remaining).
+```
+
+You can see there's a hook being called.
+You can also see the hook input and output over there.
+There are two input lines.
+
+The magic happens in between.
+You can write hooks in any language you want, as long as they are executable.
+We're choosing python for this example.
+
+So how do we define the type of hook? By naming our file.
+The hook should start with `<name-of-hook><whatever>`.
+My hook is named `on-modify.message`.
+
+Let's start by reading the two lines of input.
+The first line is the state of the task berfore being modified,
+while the second is the state after.
+
+```python
+#!/usr/bin/env python3
+import sys
+import json
+
+if __name__ == "__main__":
+    before = json.loads(sys.stdin.readline())
+    after = json.loads(sys.stdin.readline())
+
+    print(json.dumps(after))
+```
+
+The last line of our script prints the line modified, essentially making our hook a no-op.
+
+To achieve what our example wants,
+we are going to get the message from one of the input lines,
+then pass it to subprocess to call `notify-send`.
+
+```python
+if "start" in before and "start" not in after:
+  description =  before.get("description", "empty description")
+  subprocess.call(["notify-send", "TaskWarrior", description])
+```
+
+That's it!
+The final script should look like:
+
+```python
+#!/usr/bin/env python3
+import sys
+import subprocess
+import json
+
+if __name__ == "__main__":
+    before = json.loads(sys.stdin.readline())
+    after = json.loads(sys.stdin.readline())
+
+    if "start" in before and "start" not in after:
+      description =  before .get("description", "empty description")
+      subprocess.call(["notify-send", "TaskWarrior", description])
+
+    print(json.dumps(after))
+```
+
+Save it to your `hooks` folder.
+Now when you run `task <id> start`, there should be a notification on your desktop.
