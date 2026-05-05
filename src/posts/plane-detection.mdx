@@ -1,0 +1,168 @@
+---
+title: "Detect planes headed to your house"
+date: 2026-05-05
+description: "Using Python and FlightRadar24 to calculate the bearing and heading of nearby aircraft to see if they're a little too close for comfort."
+tags: ["curiosity"]
+---
+
+You're home watching TV and then BOOOMMMMMMM.
+A plane crashs into your house.
+
+Sounds like a movie, but it happened yesterday in Brazil.
+
+Can you detect planes around your house?
+Yes, if they have a ADS-B transponders active.
+
+How can you do that?
+You can use the [flightradar24 API](https://fr24api.flightradar24.com/).
+It costs 9USD a month, but we are broke.
+
+For EDUCATIONAL PURPOSES ONLY,
+let's use the [FlightRadarAPI](https://github.com/JeanExtreme002/FlightRadarAPI) python SDK.
+
+Start a new project with UV and install the required dependencies:
+
+```sh
+uv init twin-towers
+uv add FlightRadarAPI
+uv add bs4
+```
+
+You will need to find your house's latitude and longitude.
+
+You can do that using google maps.
+Go to your house, drop a pin and copy the coordinates.
+
+![house coordinates](/posts/fr24/house.png)
+
+Now we can already find the flights around your house:
+
+```python
+from FlightRadar24 import FlightRadar24API
+
+fr_api = FlightRadar24API()
+
+bounds = fr_api.get_bounds_by_point(51.064938, 3.707361, 2000)
+flights = fr_api.get_flights(bounds = bounds)
+
+for f in flights:
+  print(f)
+```
+
+That should show the flights in a 2km radius around your house:
+
+```txt
+❯ python main.py
+<(B738) PH-HXJ - Altitude: 18800 - Ground Speed: 348 - Heading: 21>
+```
+
+How can we detect planes that are about to crash into your house?
+The API already gives us the heading.
+We only need the bearing between the plane and your house.
+
+WTH is the bearing?
+Think of it as the direction the plane would have to fly to hit your house.
+Learn more about [how to calculate bearing](https://www.movable-type.co.uk/scripts/latlong.html).
+
+This is an example of a bearing calculation:
+
+![bearing example](/posts/fr24/bearing.png)
+
+Let's copy the bearing calculation function from the website I cited above:
+
+```python
+import math
+
+def calculate_bearing(lat1, lon1, lat2, lon2):
+    phi1, phi2 = math.radians(lat1), math.radians(lat2)
+    delta_lambda = math.radians(lon2 - lon1)
+
+    y = math.sin(delta_lambda) * math.cos(phi2)
+    x = math.cos(phi1) * math.sin(phi2) - \
+        math.sin(phi1) * math.cos(phi2) * math.cos(delta_lambda)
+
+    bearing = math.degrees(math.atan2(y, x))
+    return (bearing + 360) % 360
+```
+
+Now we just need to take the plane's heading and compare it with the bearing to your house.
+
+The full code should look like:
+
+```python
+
+import math
+from FlightRadar24 import FlightRadar24API
+
+HOME_COORDS = {"lat": 51.064938, "lon": 3.707361 }
+MAX_ALTITUDE_FT = 5000 # about 1500KM
+MAX_DISTANCE_KM = 5 # if a plane is 5km away, we worry about it
+HEADING_TOLERANCE_DEG = 15 # when comparing bearing and heading, we allow 15 degress of tolearance (the plane might turn)
+
+def get_bearing_to_target(current_lat, current_lon, target_lat, target_lon):
+    start_phi = math.radians(current_lat)
+    end_phi = math.radians(target_lat)
+    delta_lambda = math.radians(target_lon - current_lon)
+
+    y = math.sin(delta_lambda) * math.cos(end_phi)
+    x = math.cos(start_phi) * math.sin(end_phi) - \
+        math.sin(start_phi) * math.cos(end_phi) * math.cos(delta_lambda)
+
+    bearing = math.degrees(math.atan2(y, x))
+    return (bearing + 360) % 360
+
+fr_api = FlightRadar24API()
+
+search_bounds = fr_api.get_bounds_by_point(HOME_COORDS["lat"], HOME_COORDS["lon"], MAX_DISTANCE_KM*1000)
+all_flights = fr_api.get_flights(bounds=search_bounds)
+
+
+for flight in all_flights:
+    is_low_altitude = flight.altitude < MAX_ALTITUDE_FT
+    is_in_air = not flight.on_ground
+
+    # plane has to be low altitude and has to be flying
+    if not (is_low_altitude and is_in_air):
+        continue
+
+    target_bearing = get_bearing_to_target(
+        flight.latitude, flight.longitude,
+        HOME_COORDS["lat"], HOME_COORDS["lon"]
+    )
+
+    # calculate difference between the heading and bearing
+    angle_diff = abs(flight.heading - target_bearing)
+
+    # bearing is circular (359 is 2 degrees away from 1).
+    if angle_diff > 180:
+        angle_diff = 360 - angle_diff
+
+    # check if plane is headed to me
+    is_headed_at_me = angle_diff <= HEADING_TOLERANCE_DEG
+
+    if is_headed_at_me:
+        # 1 knot = 1.852 km/h
+        speed_kmh = flight.ground_speed * 1.852
+
+        ttc_hours = distance_km / speed_kmh
+        ttc_minutes = ttc_hours * 60
+        ttc_seconds = ttc_hours * 3600
+
+        # sound an alarm!
+        import sys
+        sys.stdout.write('\a')
+        sys.stdout.flush()
+
+        print(f"⚠️ ALERT: Flight {flight.callsign} is headed towards you!")
+
+        if ttc_minutes < 1:
+            print(f"ESTIMATED IMPACT: {ttc_seconds:.0f} seconds")
+        else:
+            print(f"ESTIMATED IMPACT: {ttc_minutes:.1f} minutes")
+```
+
+That's it.
+Run this code every 10 seconds.
+If it sounds an alarm, run!
+
+Good luck!
