@@ -2,7 +2,7 @@
 const { posts } = Astro.props;
 ---
 
-<ul class="list bg-base-100 rounded-box shadow-md">
+<ul class="list bg-base-300 m-0 p-0 shadow-md">
   {
     posts
       .sort((a, b) => new Date(b.data.date) - new Date(a.data.date)) // newest first

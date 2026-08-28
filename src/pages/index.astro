@@ -2,24 +2,45 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Prose from "../components/Prose.astro";
 const pageTitle = "George's Home";
+import { Icon } from "astro-icon/components";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <main>
     <Prose>
       <p>
-        I am a Researcher and Software Engineer focused on LLMs,
-        Retrieval-Augmented Generation, and Data Engineering. I build tools that
-        connect complex data and human utility.
+        When I was 10yo I went to an informatics class with a friend and fell in
+        love with computers. It was love at the first touch. Two years laters I
+        learned my first programing language: Visual Basic <Icon
+          class="inline"
+          name="fa7-brands:microsoft"
+          size={16}
+        />. I've also figured out how to assemble and disassemble computers and
+        earned a lot of money for a 12yo. The year was 2005, the beggining of my
+        carreer 😂.
       </p>
       <p>
-        On this site, I document my work in NLP, systems architecture,
-        productivity, and the seek for cognitive clarity.
+        Down the line I got a BS in Information Systems, but at some point when
+        I got asked what I wanted to be when I grew up I responded:
+        "Scientist!!!". Poor choice in terms of finances, good one in terms of
+        passion. Down the line I got a MS in Computer Science.
       </p>
-
+      <p>
+        I am originally from Brazil 🇧🇷, but when I moved to the US 🇺🇸 in 2018,
+        it was the beggining of the Deep Learning boom. Word2Vec had been
+        published 5 years earlier, and everyone was working on something that
+        stacked on top of it. The transformers paper had been published a year
+        before I moved. I did not know TensorFlow and Hugging Face's
+        transformers library did not exist yet, so I spent a few weeks writing
+        my own from scratch. Pretty fun times. I am currently in Belgim 🇧🇪,
+        still tinkering with computers, and still working in research.
+      </p>
+      <p>
+        On this website, I document the things I learn and do when I have time.
+      </p>
       <ul>
         <li>
-          <strong>Engineering</strong>: <a href="https://github.com/gcgbarbosa"
+          <strong>Coding</strong>: <a href="https://github.com/gcgbarbosa"
             >View my GitHub</a
           >
         </li>

@@ -1,13 +1,15 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
-import expressiveCode from 'astro-expressive-code';
+import expressiveCode from "astro-expressive-code";
 
-import mdx from '@astrojs/mdx';
+import mdx from "@astrojs/mdx";
 
-import netlify from '@astrojs/netlify';
+import netlify from "@astrojs/netlify";
+
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,26 +21,30 @@ export default defineConfig({
 
   markdown: {
     shikiConfig: {
-      theme: 'dracula',
+      theme: "dracula",
     },
   },
 
-  integrations: [expressiveCode({
-    themes: ['catppuccin-mocha', 'dark-plus'],      // light/dark out of the box
-    defaultProps: {},                 // wrap long lines by default (optional)
-    styleOverrides: {
-      // uiFontSize: "0.7rem",
-      uiFontFamily: "Anonymous Pro",
-      // codeFontSize: '0.7rem',
-      codeFontFamily: "Anonymous Pro"
-    },
+  integrations: [
+    expressiveCode({
+      themes: ["catppuccin-mocha", "dark-plus"], // light/dark out of the box
+      defaultProps: {}, // wrap long lines by default (optional)
+      styleOverrides: {
+        // uiFontSize: "0.7rem",
+        uiFontFamily: "Anonymous Pro",
+        // codeFontSize: '0.7rem',
+        codeFontFamily: "Anonymous Pro",
+      },
 
-    // Make code themes follow your DaisyUI theme (data-theme="dark|light"):
-    customizeTheme(theme) {
-      theme.name = theme.type; // renames to 'dark' or 'light'
-    },
-    // frames: { showCopyToClipboardButton: true } // on by default
-  }), mdx()],
+      // Make code themes follow your DaisyUI theme (data-theme="dark|light"):
+      customizeTheme(theme) {
+        theme.name = theme.type; // renames to 'dark' or 'light'
+      },
+      // frames: { showCopyToClipboardButton: true } // on by default
+    }),
+    mdx(),
+    icon(),
+  ],
 
   adapter: netlify(),
 });

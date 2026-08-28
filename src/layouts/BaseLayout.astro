@@ -21,19 +21,26 @@ const { pageTitle } = Astro.props;
     />
     <title>{pageTitle + " - gcgbarbosa.com"}</title>
   </head>
-  <body class="min-h-[100svh] flex flex-col bg-base-100 text-base-content">
-    <header class="mb-8 lg:mb-8">
-      <Header />
-    </header>
 
-    <main id="content" class="flex-1 flex justify-center">
-      <div class="container max-w-5xl px-6">
+  <body class="bg-base-100 text-base-content flex min-h-svh flex-col">
+    <!-- <div -->
+    <!--   class="mx-auto  max-w-svw items-center justify-between p-2 md:max-w-6xl" -->
+    <!-- > -->
+    <div
+      class="mx-auto flex h-full min-h-svh w-full flex-col gap-2 p-2 md:max-w-6xl"
+    >
+      <header class="rounded-md border p-2">
+        <Header />
+      </header>
+      <main class="flex-1 rounded-md border p-4">
         <slot />
-      </div>
-    </main>
-
-    <footer class="mt-8 lg:mt-8">
-      <Footer />
-    </footer>
+      </main>
+      <footer
+        class="flex flex-col items-center justify-center rounded-md border p-2"
+      >
+        <Footer />
+      </footer>
+    </div>
+    <!-- </div> -->
   </body>
 </html>

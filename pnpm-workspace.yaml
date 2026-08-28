@@ -1,5 +1,12 @@
+allowBuilds:
+  '@parcel/watcher': set this to true or false
+  '@tailwindcss/oxide': set this to true or false
+  esbuild: set this to true or false
+  sharp: set this to true or false
 ignoredBuiltDependencies:
   - esbuild
   - sharp
+minimumReleaseAgeExclude:
+  - astro@7.2.9
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'

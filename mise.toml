@@ -1,3 +1,2 @@
-
 [tasks.serve]
-run = "npm run dev"
+run = "pnpm run dev"
