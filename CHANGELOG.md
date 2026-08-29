@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-08-29
+
 ### Changed
 
-- Clicking on logo goes to home
-- Lint: ignore same header message
+- Astro v7
+- New theme
 
 ## [2.0.0] - 2025-08-01
 

@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const pathname = Astro.url.pathname;
 
 const isBlog =
@@ -12,22 +14,32 @@ const isHome = pathname === "/";
   <a
     href="/"
     class:list={[
-      "px-4 py-2 text-black hover:bg-amber-100 active:bg-blue-300",
+      "w-30 px-4 py-2 text-center text-black hover:bg-amber-100 active:bg-blue-300",
       { "bg-white font-bold": isHome, "bg-blue-300": !isHome },
     ]}
   >
+    {
+      isHome && (
+        <Icon class="inline" name="mdi:chevron-double-right" size={16} />
+      )
+    }
     Home
+    {isHome && <Icon class="inline" name="mdi:chevron-double-left" size={16} />}
   </a>
+
   <a
     href="/blog"
     class:list={[
-      "px-4 py-2 text-black hover:bg-amber-100 active:bg-blue-300",
-      {
-        "bg-white font-bold": isBlog,
-        "bg-blue-300": !isBlog,
-      },
+      "w-30 px-4 py-2 text-center text-black hover:bg-amber-100 active:bg-blue-300",
+      { "bg-white font-bold": isBlog, "bg-blue-300": !isBlog },
     ]}
   >
+    {
+      isBlog && (
+        <Icon class="inline" name="mdi:chevron-double-right" size={16} />
+      )
+    }
     Blog
+    {isBlog && <Icon class="inline" name="mdi:chevron-double-left" size={16} />}
   </a>
 </div>
