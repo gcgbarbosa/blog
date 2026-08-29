@@ -1,12 +1,16 @@
 ---
+interface Props {
+  tags: string[];
+}
+
 const { tags } = Astro.props;
 ---
 
-<div class="flex flex-row flex-wrap gap-y-2 gap-x-1">
+<div class="flex flex-row flex-wrap gap-x-1 gap-y-2">
   {
     tags.map((tag) => (
-      <div class="badge badge-dash badge-info">
-        <a class="link link-hover link-primary" href={`/tags/${tag}`}>
+      <div class="badge badge-dash badge-secondary">
+        <a class="link link-hover link-secondary" href={`/tags/${tag}`}>
           #{tag}
         </a>
       </div>

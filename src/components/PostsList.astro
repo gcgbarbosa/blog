@@ -1,11 +1,20 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
 const { posts } = Astro.props;
 ---
 
 <ul class="list bg-base-300 m-0 p-0 shadow-md">
   {
     posts
-      .sort((a, b) => new Date(b.data.date) - new Date(a.data.date)) // newest first
+      .sort(
+        (a, b) =>
+          new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+      )
       .map((post) => (
         <li class="list-row">
           <div>
@@ -13,7 +22,7 @@ const { posts } = Astro.props;
               <div class="text-xl font-semibold">{post.data.title}</div>
             </a>
             <div class="list-col-wrap text-xs">
-              {post.data.date.toLocaleDateString("en-US", {
+              {new Date(post.data.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

@@ -1,0 +1,15 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { title, href, description } = Astro.props;
+---
+
+<a
+  class="link link-primary flex items-center gap-1 text-xl"
+  href={href}
+  target="_blank"
+>
+  <Icon class="inline" name="mdi:link" size={18} />
+  {title}
+</a>
+<span class="ml-6 block">{description}</span>

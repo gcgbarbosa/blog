@@ -1,0 +1,23 @@
+---
+import { Icon } from "astro-icon/components";
+const { text, href, isActive = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "text-accent-content hover:bg-accent active:bg-secondary w-26 p-2 text-center",
+    {
+      "bg-secondary-content font-bold": isActive,
+      "bg-primary-content": !isActive,
+    },
+  ]}
+>
+  {
+    isActive && (
+      <Icon class="inline" name="mdi:chevron-double-right" size={16} />
+    )
+  }
+  {text}
+  {isActive && <Icon class="inline" name="mdi:chevron-double-left" size={16} />}
+</a>

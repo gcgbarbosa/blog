@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import HeaderButton from "./HeaderButton.astro";
 
 const pathname = Astro.url.pathname;
 
@@ -8,38 +8,11 @@ const isBlog =
   pathname.startsWith("/posts") ||
   pathname.startsWith("/tags");
 const isHome = pathname === "/";
+const isShelf = pathname === "/shelf";
 ---
 
 <div class="flex gap-2">
-  <a
-    href="/"
-    class:list={[
-      "w-30 px-4 py-2 text-center text-black hover:bg-amber-100 active:bg-blue-300",
-      { "bg-white font-bold": isHome, "bg-blue-300": !isHome },
-    ]}
-  >
-    {
-      isHome && (
-        <Icon class="inline" name="mdi:chevron-double-right" size={16} />
-      )
-    }
-    Home
-    {isHome && <Icon class="inline" name="mdi:chevron-double-left" size={16} />}
-  </a>
-
-  <a
-    href="/blog"
-    class:list={[
-      "w-30 px-4 py-2 text-center text-black hover:bg-amber-100 active:bg-blue-300",
-      { "bg-white font-bold": isBlog, "bg-blue-300": !isBlog },
-    ]}
-  >
-    {
-      isBlog && (
-        <Icon class="inline" name="mdi:chevron-double-right" size={16} />
-      )
-    }
-    Blog
-    {isBlog && <Icon class="inline" name="mdi:chevron-double-left" size={16} />}
-  </a>
+  <HeaderButton text="Home" href="/" isActive={isHome} />
+  <HeaderButton text="Blog" href="/blog" isActive={isBlog} />
+  <HeaderButton text="Shelf" href="/shelf" isActive={isShelf} />
 </div>

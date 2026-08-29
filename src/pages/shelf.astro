@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import PageTitle from "../components/PageTitle.astro";
+import ShelfLink from "../components/ShelfLink.astro";
+
+import { Icon } from "astro-icon/components";
+const pageTitle = "Shelf";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="flex flex-col gap-2">
+    <PageTitle title="Shelf" />
+    <p class="mb-4 text-lg">
+      This is a collection of things that I found interesting while browsing the
+      web.
+    </p>
+
+    <ul>
+      <li>
+        <ShelfLink
+          href="https://shiptypes.com/"
+          title="Ship types"
+          description="A very neat idea. I used to spend time carefully maintaining documentation. Now I focus on getting the types right."
+        />
+      </li>
+      <li>
+        <ShelfLink
+          href="https://slashpages.net/"
+          title="Slash pages"
+          description="A collection of subpages you can add to your website/blog"
+        />
+      </li>
+    </ul>
+  </div>
+</BaseLayout>
