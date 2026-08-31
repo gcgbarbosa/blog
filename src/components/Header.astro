@@ -8,7 +8,7 @@ const isBlog =
   pathname.startsWith("/posts") ||
   pathname.startsWith("/tags");
 const isHome = pathname === "/";
-const isShelf = pathname === "/shelf";
+const isShelf = pathname.startsWith("/shelf");
 ---
 
 <div class="flex gap-2">
