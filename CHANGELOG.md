@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - shelf
 
+### Fixed
+
+- Posts in subdirectories (e.g. `src/posts/wip/`) now render through a rest-parameter route.
+- Missing `src/icons` directory no longer causes an `[astro-icon]` load warning.
+
 ## [2.1.0] - 2026-08-29
 
 ### Changed
